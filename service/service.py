@@ -1,0 +1,41 @@
+from model.music import Music
+
+music_play_list = []
+
+
+# 음악 등록하기
+def plus_music():
+    while True:
+        title = input("추가할 음악 제목: ")
+        genre = input("추가한 음악 장르 분류: ")
+        m = Music(title, genre)
+        music_play_list.append(m)
+
+        answer = input("음악을 더 등록하시겠습니까? (y/n):")
+        if answer != "y":
+            print("\n플레이리스트 추가를 종료합니다.")
+            break
+
+
+# 플레이 리스트 보기
+def play_music_list():
+    print("\n----- 플레이 리스트 -----")
+    print("번호 | 제목")
+    for idx, m in enumerate(music_play_list):
+        print(f"{idx + 1}   | {m.title}")
+
+
+# 플레이 리스트 상세보기
+def view_detail_play_music_list():
+    print("---플레이 리스트 상세보기---")
+    music_num = int(input("상세보기할 음악 번호 입력: "))
+    m = music_play_list[music_num-1]
+    print(f"제목: {m.title}, 장르: {m.genre}")
+
+
+# 플레이리스트 삭제하기
+def delete_play_music_list():
+    print("\n---플레이 리스트에서 삭제---")
+    music_num = int(input("플레이리스트에서 삭제할 음악 넘버: "))
+    del music_play_list[music_num - 1]
+    print("플레이 리스트에서 삭제되었습니다.\n")
