@@ -1,6 +1,6 @@
-from model.music import Music
+from model.music import Music, DefaultMusic
 
-music_play_list = []
+music_play_list = DefaultMusic.create_playlist()
 
 
 # 음악 등록하기
@@ -8,7 +8,9 @@ def plus_music():
     while True:
         title = input("추가할 음악 제목: ")
         genre = input("추가한 음악 장르 분류: ")
-        m = Music(title, genre)
+        artist = input("추가할 음악 아티스트: ")
+
+        m = Music(title, genre,artist)
         music_play_list.append(m)
 
         answer = input("음악을 더 등록하시겠습니까? (y/n):")
@@ -23,14 +25,18 @@ def play_music_list():
     print("번호 | 제목")
     for idx, m in enumerate(music_play_list):
         print(f"{idx + 1}   | {m.title}")
+    if not music_play_list:
+        print("등록된 음악이 없습니다.")
+        return
 
 
 # 플레이 리스트 상세보기
 def view_detail_play_music_list():
-    print("---플레이 리스트 상세보기---")
+    print("--- 플레이 리스트 상세보기 ---")
     music_num = int(input("상세보기할 음악 번호 입력: "))
-    m = music_play_list[music_num-1]
-    print(f"제목: {m.title}, 장르: {m.genre}")
+    m = music_play_list[music_num - 1]
+
+    print(m)
 
 
 # 플레이리스트 삭제하기
