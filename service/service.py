@@ -14,7 +14,7 @@ def plus_music():
         music_play_list.append(m)
 
         answer = input("음악을 더 등록하시겠습니까? (y/n):")
-        if answer != "y":
+        if answer == "n":
             print("\n플레이리스트 추가를 종료합니다.")
             break
 
@@ -56,14 +56,19 @@ def delete_play_music_list():
 
         try:
             print("\n--- 플레이 리스트에서 삭제 ---")
-            music_num = int(input("플레이리스트에서 삭제할 음악 번호: "))
+            music_num = input("플레이리스트에서 삭제할 음악 번호 (취소: 0): ")
 
+            if music_num == "0":
+                print("\n삭제를 취소하고 나갑니다.")
+                break
+
+            music_num = int(music_num)
             del music_play_list[music_num - 1]
             print("플레이 리스트에서 삭제되었습니다.\n")
 
             answer = input("음악을 더 삭제하시겠습니까? (y/n): ")
 
-            if answer != "y":
+            if answer == "n":
                 print("\n플레이리스트 삭제를 종료합니다.")
                 break
 
